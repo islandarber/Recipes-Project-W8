@@ -1,0 +1,50 @@
+.recipe-card {
+  display: flex;
+  /* max-height: 35em; */
+  flex-direction: column; /* Stack items vertically */
+  justify-content: flex-start; /* Align items to the start */
+  align-items: flex-start; /* Align items to the start */
+  width: 90%;
+  margin: 3rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5em;
+  background-color: rgba(255, 255, 255, 0.75);
+  color: rgb(80,80, 80);
+
+  .card-header {
+    color: #ff38159c;
+    font-size: 1.5rem;
+    width: 100%; /* Make the header stretch across the entire card */
+    border-bottom: 1px black;
+  }
+
+  .recipe-content {
+    display: flex;
+    flex-direction: row; /* Stack items horizontally */
+    width: 100%;
+
+    .recipe-image {
+      width: 40%;
+      aspect-ratio: 1 / 1;
+      margin-right: 2em; 
+      border-radius: 0.5em;
+      object-fit: cover;
+    } 
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ingr-instr {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 50%;
+  height: 60%;
+}

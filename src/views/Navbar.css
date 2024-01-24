@@ -1,0 +1,153 @@
+.Navbar {
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* align-content: center; */
+  /* padding: 0 1em; */
+  position: sticky;
+  top: 0; 
+  padding: 1em;
+  border-bottom: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.75);
+
+  logo {
+    margin-left: 9em;
+  }
+
+  a {
+    color: rgb(80,80, 80);
+      text-decoration: none;
+      transition: transform 0.3 ease;
+      transform-origin: center;
+    &:hover {
+        font-weight: bold;
+        color: #ff38159c;
+        transform: scale(1.1);
+      }
+  }
+
+  li:hover {
+    cursor: pointer;
+  }
+
+  ul {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0;
+      margin:  0;       
+      width: 50%;
+  }
+}
+
+
+.search-container {
+position: relative;
+width: 70%;
+margin-right: 6em;
+.search-button img {
+  height: 3em;
+}
+  
+}
+
+.searchbar {
+width: 100%;
+padding: 0.5em;
+padding-left: 10px;
+border: 1px solid #ccc;
+box-shadow: 0 0 0.5em #ccc inset;
+border-radius: 0.5em;
+}
+
+.search-button {
+background-color: transparent;
+position: absolute;
+right: 0px;
+top: 10%;
+transform: translateY(-50%);
+border: none;
+width: 20px;
+height: 20px;
+cursor: pointer;
+}
+
+.search-button img {
+height: 3em;
+}
+
+.searchbar:focus {
+  border-color: #ff38159c;
+  outline: none;
+}
+
+
+
+nav img {
+height: 5em;
+margin-left: 1em ok;
+}
+
+nav ul {
+font-size: 1.4em;
+display: flex;
+list-style: none;
+justify-content: flex-end;
+} 
+
+@media only screen and (max-width: 600px) {
+.Navbar {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: none;
+  background-color: rgba(255, 255, 255, 0.75);
+  z-index: 1;
+  logo {
+    margin-left: 0;
+  }
+  ul {
+    font-size: 20px;
+    width: 100%;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+  }
+}
+.search-container {
+  width: 100%;
+  margin: 0;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.searchbar {
+  width: 100%;
+}
+.search-button {
+  right: 0;
+  top: 0;
+  transform: none;
+}
+.search-button img {
+  margin-bottom: 3em;
+}
+nav img {
+  height: 5em;
+  margin-top: 1em;
+  margin-left: 0;
+}
+nav ul {
+  font-size: 1em;
+  justify-content: space-around;
+  gap: 0;
+}
+}
