@@ -1,19 +1,27 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useContentful from './useContentful';
+import {getRecipes} from './useContentful';
 import './Dropdown.css';
 
 const Dropdown = () => {
   const [recipes, setRecipes] = useState([]);
-  const { getRecipes } = useContentful();
   const navigate = useNavigate();
 
   useEffect(() => {
-    getRecipes().then((recipes) => {
-      setRecipes(recipes.items);
-    });
-  }, []);
+    // Define an async function inside useEffect to be able to use await
+    const fetchRecipes = async () => {
+      try {
+        const fetchedRecipes = await getRecipes();
+        setRecipes(fetchedRecipes);
+      } catch (error) {
+        console.log(`Error fetching recipes: ${error}`);
+      }
+    };
+
+    // Call the async function
+    fetchRecipes();
+  }, []); 
 
 
 
@@ -23,8 +31,8 @@ const Dropdown = () => {
         <button className="dropbtn">Recipes</button>
         <div className="dropdown-content">
           {recipes.map((recipe) => (
-            <a href="#" key={recipe.sys.id} onClick={() => navigate(`${recipe.sys.id}`)}>
-              {recipe.fields.name} {recipe.type}
+            <a href="#" key={recipe.id} onClick={() => navigate(`/recipes/${recipe.id}`)}>
+              {recipe.name}
             </a>
           ))}
         </div>

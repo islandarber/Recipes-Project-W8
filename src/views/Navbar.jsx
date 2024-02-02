@@ -4,31 +4,39 @@ import searchIcon from '../assets/search.png'
 import './Navbar.css'
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import useContentful from './useContentful'
+import {getRecipes} from './useContentful'
 
 
 
 const NavBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [recipes, setRecipes] = useState([]);
-  const { getRecipes } = useContentful();
   const [results, setResults] = useState([]);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    getRecipes().then((res) => {
-      setRecipes(res.items);
-    });
-  }, []);
+    // Define an async function inside useEffect to be able to use await
+    const fetchRecipes = async () => {
+      try {
+        const fetchedRecipes = await getRecipes();
+        setRecipes(fetchedRecipes);
+      } catch (error) {
+        console.log(`Error fetching recipes: ${error}`);
+      }
+    };
+
+    // Call the async function
+    fetchRecipes();
+  }, []); 
 
 
   const allIngredients = recipes.flatMap((recipe) => {
     // Check if 'fields' is defined for the current recipe
-    if (recipe && recipe.fields && recipe.fields.ingredients) {
-      const ingredientsArray = recipe.fields.ingredients.split(',').map((ingredient) => ingredient.trim());
+    if (recipe && recipe.ingredients) {
+      const ingredientsArray = recipe.ingredients.split(',').map((ingredient) => ingredient.trim());
       
-      const recipeId = recipe.sys.id; // Get the recipe ID
+      const recipeId = recipe.id; // Get the recipe ID
       return ingredientsArray.map((ingredient) => ({
         id: recipeId,
         ingredient,
@@ -50,8 +58,7 @@ const NavBar = () => {
     const matchingIngredients = allIngredients.filter(
       (ingredient) => ingredient.ingredient.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    
-    allIngredients.forEach(ingredient => console.log(ingredient));
+
     
   
     if (matchingIngredients.length === 0) {
@@ -59,7 +66,7 @@ const NavBar = () => {
     } else {
       setResults(matchingIngredients);
       const firstIngredient = matchingIngredients[0];
-      navigate(`${firstIngredient.id}`);
+      navigate(`recipes/${firstIngredient.id}`);
     }
 
     setSearchTerm(''); // clear the search field

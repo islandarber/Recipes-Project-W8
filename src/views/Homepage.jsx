@@ -1,31 +1,32 @@
 import { useState, useEffect } from 'react';
-import useContentful from './useContentful';
+import {getRecipes} from './useContentful';
 import './Homepage.css';
 import {useNavigate} from 'react-router-dom';
 
 const Homepage = () => {
     const [recipes, setRecipes] = useState([]);
-    const { getRecipes } = useContentful();
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        // Set loading to true when starting to fetch data
-        setLoading(true);
-    
-        getRecipes()
-          .then((allRecipes) => {
-            // Shuffle the recipes and get the first three
-            const shuffledRecipes = shuffleArray(allRecipes.items);
-            const randomThreeRecipes = shuffledRecipes.slice(0, 3);
-    
-            // Update state with the fetched recipes
-            setRecipes(randomThreeRecipes);
-          })
-          .finally(() => {
-            // Set loading to false when data fetching is complete (regardless of success or failure)
+    setLoading(true);
+    // Define an async function inside useEffect to be able to use await
+    const fetchRecipes = async () => {
+      try {
+        const fetchedRecipes = await getRecipes();
+        const shuffledRecipes = shuffleArray(fetchedRecipes);
+        const randomThreeRecipes = shuffledRecipes.slice(0, 3);
+        setRecipes(randomThreeRecipes);
+      } catch (error) {
+        console.log(`Error fetching recipes: ${error}`);
+      }finally{
             setLoading(false);
-          });
-      }, []);
+              };
+    };
+
+    // Call the async function
+    fetchRecipes();
+  }, []); 
+
 
 
     // Function to shuffle an array randomly
@@ -56,10 +57,9 @@ const Homepage = () => {
             {loading ? <h3>Loading...</h3> :<section className="featured-recipes">
                 <div className='homepage-container'>
                     {recipes.map((recipe) => (
-                        <div key={recipe.sys.id} className="homepage-recipe-card" onClick={() => navigate(`${recipe.sys.id}`)}>
-                            <h3>{recipe.fields.name}</h3>
-                            <img src={recipe.fields.image.fields.file.url} alt="pasta" />
-                            {/* <p>{recipe.fields.description}</p> */}
+                        <div key={recipe.id} className="homepage-recipe-card" onClick={() => navigate(`recipes/${recipe.id}`)}>
+                            <h3>{recipe.name}</h3>
+                            <img src={recipe.image} alt="pasta" />
                         </div>
                     ))}
                 </div>

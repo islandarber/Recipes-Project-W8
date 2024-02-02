@@ -1,28 +1,11 @@
-import { createClient } from "contentful";
+import axios from "axios";
 
-const useContentful = () => {
- const accessToken = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN;
-
-const client = createClient({
-  space: "dhnt7i1w9s9b",
-  accessToken: accessToken,
-  host: "preview.contentful.com"
-})
-
-const getRecipes = async () => {
+export const getRecipes = async () => {
   try {
-    const entries = await client.getEntries({
-      content_type: "recipes",
-      select: "fields"
-    });
-
-    return entries;
+    const response= await axios.get('http://localhost:8000/recipes');
+    return response.data;
 
   } catch (error) {
     console.log(`Error fetching recipes ${error}`);
   }
-} 
-return { getRecipes };
 }
-
-export default useContentful;

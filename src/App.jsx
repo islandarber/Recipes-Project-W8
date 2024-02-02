@@ -1,6 +1,6 @@
 import './App.css'
 import NavBar from './views/Navbar';
-import HomePage from './views/HomePage';
+import HomePage from './views/Homepage';
 import { Routes, Route } from 'react-router-dom';
 import RecipeCard from './views/RecipeCard';
 import Footer from './views/Footer';
@@ -15,7 +15,7 @@ function App() {
       <NavBar />
         <Routes>
           <Route path='/' element={<HomePage />} />
-          <Route path='/:id' element={<RecipeCard />} />
+          <Route path='/recipes/:id' element={<RecipeCard />} />
           <Route path='/gallery' element={<Gallery />} />
         </Routes>
     </div>
