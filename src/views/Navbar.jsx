@@ -4,7 +4,7 @@ import searchIcon from '../assets/search.png'
 import './Navbar.css'
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import {getRecipes} from './useContentful'
+import {getRecipes} from './getRecipes'
 
 
 

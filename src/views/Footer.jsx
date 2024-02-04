@@ -13,9 +13,10 @@ function Footer() {
         <div className='copy-terms'>
           <p>
             <a href="">Terms of Use</a>
-            |
+            
             <a href="">Privacy Policy</a>
           </p>
+          |
           <p>Copyright &copy; 2024</p>
         </div>
     </div>

@@ -132,13 +132,10 @@ justify-content: flex-end;
 .searchbar {
   width: 100%;
 }
-.search-button {
-  right: 0;
-  top: 0;
-  transform: none;
-}
+
 .search-button img {
-  margin-bottom: 3em;
+  margin-top: 0;
+  min-width: 30px;
 }
 nav img {
   height: 5em;

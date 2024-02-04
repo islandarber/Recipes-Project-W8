@@ -1,8 +1,8 @@
 .footer {
-  /* color: #7b7b7b; */
+  background-color: rgba(218, 218, 218, 0.75);
   text-align: center;
   width: 100%;
-  height: 50vh;
+  height: auto;
   display: flex;
   flex-direction: column;
 }
@@ -12,12 +12,12 @@
   text-decoration: none;
   width: 10%;
   align-self: center;
-  margin-top: 1rem;
 }
 
 .footer img {
   width: 30px;
   height: 30px;
+  margin-top: 0.2rem;
 }
 
 .footer p a:hover{
@@ -26,9 +26,11 @@
 
 .copy-terms {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  margin-top: 1rem;
-  gap: 1rem;
+  gap: 0.7rem;
+}
+
+.copy-terms a{
+  margin-left:0.7rem ;
 }

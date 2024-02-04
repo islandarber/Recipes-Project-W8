@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getRecipes } from './useContentful';
+import { getRecipes } from './getRecipes';
 import { useParams } from 'react-router-dom';
 import './RecipeCard.css';
 

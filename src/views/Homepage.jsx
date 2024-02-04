@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import {getRecipes} from './useContentful';
+import {getRecipes} from './getRecipes';
 import './Homepage.css';
 import {useNavigate} from 'react-router-dom';
 
@@ -17,7 +17,7 @@ const Homepage = () => {
         const randomThreeRecipes = shuffledRecipes.slice(0, 3);
         setRecipes(randomThreeRecipes);
       } catch (error) {
-        console.log(`Error fetching recipes: ${error}`);
+        console.log(error);
       }finally{
             setLoading(false);
               };

@@ -57,3 +57,22 @@
   transform: scale(1.1);
   color: whitesmoke;
 }
+
+@media screen and (max-width: 768px) {
+
+  .gallery-card{
+    width:70%;
+  }
+  .gallery img {
+    width: 200px;
+    height: 300px;
+  }
+
+  .gallery-card h3 {
+    font-size: 0.7em;
+  }
+
+  .gallery button {
+    font-size: 2rem;
+    padding: 0.5rem 1rem;}
+}
